@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Canlı Test Uygulaması
 
-## Getting Started
+Bu proje, canlı bir sunucuda (VPS, Cloud, Vercel, Docker veya cPanel Node.js) kolayca test edilmek üzere hazırlanmış modern bir Next.js (App Router, Tailwind CSS, TypeScript) uygulamasıdır.
 
-First, run the development server:
+---
+
+## 🚀 Hızlı Başlangıç
+
+### 1. Yerel Ortamda Test Etme
+
+Projeyi yerel makinenizde test etmek için:
 
 ```bash
+# Bağımlılıkları yükleyin
+npm install
+
+# Geliştirme sunucusunu başlatın
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tarayıcınızda [http://localhost:3000](http://localhost:3000) adresine gidin.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌐 Canlı Sunucuya Yükleme ve Dağıtım Rehberi
 
-## Learn More
+### Yöntem 1: VPS / Linux Sunucusu (Ubuntu/Debian) + PM2
 
-To learn more about Next.js, take a look at the following resources:
+Sunucunuza zip dosyasını yükleyin ve açın:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# 1. Zip dosyasını açın ve klasöre girin
+unzip nextjs-app.zip -d my-app
+cd my-app
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# 2. Node.js bağımlılıklarını kurun
+npm install
 
-## Deploy on Vercel
+# 3. Production build alın
+npm run build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# 4. PM2 ile arka planda 7/24 çalışacak şekilde başlatın
+pm2 start npm --name "nextjs-test" -- start
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Veya PM2 yoksa doğrudan:
+npm start
+```
+
+Uygulamanız varsayılan olarak `3000` portunda çalışacaktır. Önüne Nginx reverse proxy ekleyerek 80/443 portundan domaininize yönlendirebilirsiniz.
+
+---
+
+### Yöntem 2: cPanel "Setup Node.js App"
+
+1. cPanel dosya yöneticisinden zip içeriğini projenin kök dizinine yükleyin.
+2. cPanel'de **Setup Node.js App** bölümüne girin.
+3. Node.js sürümünü (18, 20 veya üzeri) seçin.
+4. Application root ve URL'yi belirleyin.
+5. **Run NPM Install** butonuna tıklayın.
+6. SSH terminali üzerinden veya cPanel terminali ile `npm run build` çalıştırın ve uygulamayı yeniden başlatın (Restart).
+
+---
+
+### Yöntem 3: Vercel / Netlify / Render
+
+Projeyi GitHub / GitLab deponuza pushlayın veya Vercel CLI ile:
+```bash
+npx vercel
+```
+komutunu vererek tek adımda canlıya alabilirsiniz.
+
+---
+
+## 🛠 Proje Özellikleri
+
+- **Next.js (App Router)**: En güncel Next.js sürümü.
+- **React State & Hydration Testi**: Sayfa üzerinde çalışan etkileşimli sayaç.
+- **Canlı API Endpoint Testi**: `/api/health` rotasını tetikleyen ve yanıt süresini (ms) ölçen test butonu.
+- **Etkileşimli Not Listesi**: React form ve array manipülasyon testi.
+- **Tailwind CSS**: Modern ve koyu temalı (dark mode) şık arayüz.
+- **TypeScript**: Tam tip güvenliği.

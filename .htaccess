@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# DirectoryIndex Apache tarafından index.html eklenirse onu temizleyip doğrudan Next.js köküne ilet
+RewriteRule ^index\.html$ http://localhost:3000/erpnext/ [P,L]
+
+# Diğer tüm istekleri (API, _next assetleri, alt sayfalar) Node.js'e yönlendir
+RewriteRule ^(.*)$ http://localhost:3000/erpnext/$1 [P,L]
