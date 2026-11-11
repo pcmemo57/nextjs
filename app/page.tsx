@@ -150,9 +150,15 @@ export default function Home() {
         {/* ÜST BAŞLIK */}
         <header className="border-b border-slate-800 pb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-2">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-              SQL VERİTABANI BAĞLANTISI AKTİF
+            <div className="flex flex-wrap items-center gap-2 mb-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                SQL VERİTABANI BAĞLANTISI AKTİF
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-violet-500/15 text-violet-300 border border-violet-500/30">
+                <span>✨</span>
+                Google Montserrat Fontu Aktif (v2 Güncellemesi)
+              </div>
             </div>
             <h1 className="text-3xl font-black text-white tracking-tight">
               Müşteri &amp; Kayıt Yönetim Portalı
