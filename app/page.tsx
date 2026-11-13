@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import ThemeToggle from "./components/ThemeToggle";
 
 interface Musteri {
   id: number;
@@ -144,36 +145,40 @@ export default function Home() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 py-10 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-100 text-slate-800 dark:bg-slate-950 dark:text-slate-100 py-10 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
       <div className="max-w-6xl mx-auto space-y-8">
         
         {/* ÜST BAŞLIK */}
-        <header className="border-b border-slate-800 pb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <header className="border-b border-slate-200 dark:border-slate-800 pb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+                <span className="h-2 w-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
                 SQL VERİTABANI BAĞLANTISI AKTİF
               </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-violet-500/15 text-violet-300 border border-violet-500/30">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-500/20 dark:border-violet-500/30">
                 <span>✨</span>
                 Google Montserrat Fontu Aktif (v2 Güncellemesi)
               </div>
             </div>
-            <h1 className="text-3xl font-black text-white tracking-tight">
+            <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
               Müşteri &amp; Kayıt Yönetim Portalı
             </h1>
-            <p className="mt-1 text-slate-400 text-sm">
+            <p className="mt-1 text-slate-600 dark:text-slate-400 text-sm">
               Bu uygulama gerçek bir SQLite veritabanına bağlıdır. Tüm ekleme, silme ve listelemeler doğrudan SQL ile çalışır.
             </p>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex flex-wrap items-center gap-2.5">
+            {/* Tema Değiştirme Butonu */}
+            <ThemeToggle />
+
+            {/* Ham JSON Uç Noktası */}
             <a
               href={`${basePath}/api/musteriler`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600/20 border border-blue-500/30 text-blue-400 hover:bg-blue-600/30 text-xs font-mono transition"
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-600 border border-blue-200 dark:bg-blue-600/20 dark:border-blue-500/30 dark:text-blue-400 dark:hover:bg-blue-600/30 text-xs font-mono transition shadow-sm dark:shadow-none"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -184,31 +189,31 @@ export default function Home() {
         </header>
 
         {/* VERİYİ NEREDEN GÖREBİLİRİM? BİLGİ KARTLARI */}
-        <section className="bg-slate-900/50 border border-slate-800 rounded-xl p-5">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-300 mb-3 flex items-center gap-2">
+        <section className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm dark:shadow-none transition-colors duration-200">
+          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-800 dark:text-slate-300 mb-3 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-blue-500" />
             Verileri Nereden ve Nasıl Görebilirsiniz?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-            <div className="bg-slate-950 p-4 rounded-lg border border-slate-800/80">
-              <span className="font-semibold text-blue-400 block mb-1">1. Canlı Yönetim Tablosu (Bu Sayfa)</span>
-              <p className="text-slate-400">
-                Aşağıdaki tablo doğrudan veritabanındaki <code className="text-slate-300 font-mono">musteriler</code> tablosunu anlık listeler.
+            <div className="bg-slate-50 dark:bg-slate-950 p-4 rounded-lg border border-slate-200 dark:border-slate-800/80 transition-colors duration-200">
+              <span className="font-semibold text-blue-600 dark:text-blue-400 block mb-1">1. Canlı Yönetim Tablosu (Bu Sayfa)</span>
+              <p className="text-slate-600 dark:text-slate-400">
+                Aşağıdaki tablo doğrudan veritabanındaki <code className="bg-slate-200/70 dark:bg-slate-900 text-slate-800 dark:text-slate-300 px-1 py-0.5 rounded font-mono">musteriler</code> tablosunu anlık listeler.
               </p>
             </div>
-            <div className="bg-slate-950 p-4 rounded-lg border border-slate-800/80">
-              <span className="font-semibold text-emerald-400 block mb-1">2. Ham JSON API Uç Noktası</span>
-              <p className="text-slate-400">
+            <div className="bg-slate-50 dark:bg-slate-950 p-4 rounded-lg border border-slate-200 dark:border-slate-800/80 transition-colors duration-200">
+              <span className="font-semibold text-emerald-600 dark:text-emerald-400 block mb-1">2. Ham JSON API Uç Noktası</span>
+              <p className="text-slate-600 dark:text-slate-400">
                 Tarayıcıda{" "}
-                <a href={`${basePath}/api/musteriler`} target="_blank" className="text-emerald-300 underline font-mono">
+                <a href={`${basePath}/api/musteriler`} target="_blank" className="text-emerald-600 dark:text-emerald-300 underline font-mono">
                   {basePath || ""}/api/musteriler
                 </a>{" "}
                 adresini açarak tüm verileri ham JSON olarak görebilirsiniz.
               </p>
             </div>
-            <div className="bg-slate-950 p-4 rounded-lg border border-slate-800/80">
-              <span className="font-semibold text-purple-400 block mb-1">3. Sunucudaki SQLite Dosyası</span>
-              <p className="text-slate-400 font-mono">
+            <div className="bg-slate-50 dark:bg-slate-950 p-4 rounded-lg border border-slate-200 dark:border-slate-800/80 transition-colors duration-200">
+              <span className="font-semibold text-purple-600 dark:text-purple-400 block mb-1">3. Sunucudaki SQLite Dosyası</span>
+              <p className="text-slate-600 dark:text-slate-400 font-mono">
                 {dbInfo?.dbFilePath || "data/app.db"} ({dbInfo?.fileSize || "SQLite"})
               </p>
             </div>
@@ -220,8 +225,8 @@ export default function Home() {
           <div
             className={`p-4 rounded-lg text-sm border flex items-center justify-between ${
               message.type === "success"
-                ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
-                : "bg-rose-500/10 text-rose-400 border-rose-500/20"
+                ? "bg-emerald-50 text-emerald-800 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20"
+                : "bg-rose-50 text-rose-800 border-rose-200 dark:bg-rose-500/10 dark:text-rose-400 dark:border-rose-500/20"
             }`}
           >
             <span>{message.text}</span>
@@ -232,80 +237,80 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           {/* SOL: YENİ KAYIT EKLEME FORMU */}
-          <div className="lg:col-span-1 bg-slate-900/60 border border-slate-800 rounded-xl p-6 h-fit">
-            <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-              <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 text-sm font-bold">+</span>
+          <div className="lg:col-span-1 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl p-6 h-fit shadow-sm dark:shadow-none transition-colors duration-200">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+              <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400 text-sm font-bold">+</span>
               Veritabanına Kayıt Ekle
             </h2>
 
             <form onSubmit={handleSubmit} className="space-y-4 text-sm">
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">Ad Soyad *</label>
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Ad Soyad *</label>
                 <input
                   type="text"
                   value={adSoyad}
                   onChange={(e) => setAdSoyad(e.target.value)}
                   placeholder="Örn: Burak Kaya"
                   required
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-lg px-3 py-2 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-950 transition"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">E-posta Adresi *</label>
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">E-posta Adresi *</label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Örn: burak@sirket.com"
                   required
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-lg px-3 py-2 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-950 transition"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">Telefon</label>
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Telefon</label>
                 <input
                   type="text"
                   value={telefon}
                   onChange={(e) => setTelefon(e.target.value)}
                   placeholder="Örn: 0532 999 8877"
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-lg px-3 py-2 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-950 transition"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">Departman</label>
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Departman</label>
                 <select
                   value={departman}
                   onChange={(e) => setDepartman(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-lg px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 transition"
                 >
-                  <option>Satış &amp; Pazarlama</option>
-                  <option>Yönetim</option>
-                  <option>Teknik Destek</option>
-                  <option>Yazılım &amp; IT</option>
-                  <option>Muhasebe</option>
+                  <option className="bg-white dark:bg-slate-950 text-slate-900 dark:text-white">Satış &amp; Pazarlama</option>
+                  <option className="bg-white dark:bg-slate-950 text-slate-900 dark:text-white">Yönetim</option>
+                  <option className="bg-white dark:bg-slate-950 text-slate-900 dark:text-white">Teknik Destek</option>
+                  <option className="bg-white dark:bg-slate-950 text-slate-900 dark:text-white">Yazılım &amp; IT</option>
+                  <option className="bg-white dark:bg-slate-950 text-slate-900 dark:text-white">Muhasebe</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">Durum</label>
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Durum</label>
                 <select
                   value={durum}
                   onChange={(e) => setDurum(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-lg px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 transition"
                 >
-                  <option>Aktif</option>
-                  <option>Beklemede</option>
-                  <option>Pasif</option>
+                  <option className="bg-white dark:bg-slate-950 text-slate-900 dark:text-white">Aktif</option>
+                  <option className="bg-white dark:bg-slate-950 text-slate-900 dark:text-white">Beklemede</option>
+                  <option className="bg-white dark:bg-slate-950 text-slate-900 dark:text-white">Pasif</option>
                 </select>
               </div>
 
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-2.5 px-4 rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-semibold transition cursor-pointer text-sm"
+                className="w-full py-2.5 px-4 rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-semibold transition cursor-pointer text-sm shadow-sm"
               >
                 {submitting ? "SQL'e Kaydediliyor..." : "Veritabanına Kaydet (INSERT)"}
               </button>
@@ -313,15 +318,15 @@ export default function Home() {
           </div>
 
           {/* SAĞ: VERİTABANI TABLOSU (CANLI VERİ GÖRÜNTÜLEYİCİ) */}
-          <div className="lg:col-span-2 bg-slate-900/60 border border-slate-800 rounded-xl p-6 flex flex-col justify-between">
+          <div className="lg:col-span-2 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-xl p-6 flex flex-col justify-between shadow-sm dark:shadow-none transition-colors duration-200">
             <div>
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
                 <div>
-                  <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                    <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-500/20 text-blue-400 text-sm font-bold">SQL</span>
+                  <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400 text-sm font-bold">SQL</span>
                     Müşteri Veritabanı Tablosu
                   </h2>
-                  <span className="text-xs text-slate-400">
+                  <span className="text-xs text-slate-500 dark:text-slate-400">
                     Toplam {musteriler.length} kayıt veritabanında saklanıyor.
                   </span>
                 </div>
@@ -332,11 +337,11 @@ export default function Home() {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Tabloda ara..."
-                    className="bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-white placeholder-slate-600 focus:outline-none focus:border-blue-500"
+                    className="bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-blue-500 transition"
                   />
                   <button
                     onClick={() => { fetchMusteriler(); fetchDbInfo(); }}
-                    className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition cursor-pointer"
+                    className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 dark:border-transparent dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-300 transition cursor-pointer"
                     title="Yenile"
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -347,9 +352,9 @@ export default function Home() {
               </div>
 
               {/* Tablo */}
-              <div className="overflow-x-auto border border-slate-800 rounded-lg">
+              <div className="overflow-x-auto border border-slate-200 dark:border-slate-800 rounded-lg">
                 <table className="w-full text-left text-xs">
-                  <thead className="bg-slate-950 text-slate-400 uppercase font-mono border-b border-slate-800">
+                  <thead className="bg-slate-100 dark:bg-slate-950 text-slate-600 dark:text-slate-400 uppercase font-mono border-b border-slate-200 dark:border-slate-800">
                     <tr>
                       <th className="py-3 px-3">ID</th>
                       <th className="py-3 px-3">Ad Soyad</th>
@@ -359,34 +364,34 @@ export default function Home() {
                       <th className="py-3 px-3 text-right">İşlem</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800/80">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-800/80">
                     {loading ? (
                       <tr>
-                        <td colSpan={6} className="text-center py-8 text-slate-400">
+                        <td colSpan={6} className="text-center py-8 text-slate-500 dark:text-slate-400">
                           Veritabanından yükleniyor...
                         </td>
                       </tr>
                     ) : filteredMusteriler.length === 0 ? (
                       <tr>
-                        <td colSpan={6} className="text-center py-8 text-slate-500">
+                        <td colSpan={6} className="text-center py-8 text-slate-400 dark:text-slate-500">
                           Veritabanında kayıt bulunamadı.
                         </td>
                       </tr>
                     ) : (
                       filteredMusteriler.map((item) => (
-                        <tr key={item.id} className="hover:bg-slate-900/50 transition">
-                          <td className="py-3 px-3 font-mono text-slate-400 font-bold">#{item.id}</td>
-                          <td className="py-3 px-3 font-medium text-white">{item.ad_soyad}</td>
-                          <td className="py-3 px-3 text-slate-300 font-mono">{item.email}</td>
-                          <td className="py-3 px-3 text-slate-400">{item.departman}</td>
+                        <tr key={item.id} className="hover:bg-slate-50 dark:hover:bg-slate-900/50 transition">
+                          <td className="py-3 px-3 font-mono text-slate-500 dark:text-slate-400 font-bold">#{item.id}</td>
+                          <td className="py-3 px-3 font-medium text-slate-900 dark:text-white">{item.ad_soyad}</td>
+                          <td className="py-3 px-3 text-slate-600 dark:text-slate-300 font-mono">{item.email}</td>
+                          <td className="py-3 px-3 text-slate-600 dark:text-slate-400">{item.departman}</td>
                           <td className="py-3 px-3">
                             <span
                               className={`px-2 py-0.5 rounded text-[10px] font-semibold ${
                                 item.durum === "Aktif"
-                                  ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30"
+                                  ? "bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/30"
                                   : item.durum === "Beklemede"
-                                  ? "bg-amber-500/10 text-amber-400 border border-amber-500/30"
-                                  : "bg-slate-800 text-slate-400"
+                                  ? "bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/30"
+                                  : "bg-slate-100 text-slate-600 border border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-transparent"
                               }`}
                             >
                               {item.durum}
@@ -395,7 +400,7 @@ export default function Home() {
                           <td className="py-3 px-3 text-right">
                             <button
                               onClick={() => handleDelete(item.id)}
-                              className="text-rose-400 hover:text-rose-300 p-1 rounded hover:bg-rose-500/10 transition cursor-pointer"
+                              className="text-rose-500 hover:text-rose-600 dark:text-rose-400 dark:hover:text-rose-300 p-1 rounded hover:bg-rose-50 dark:hover:bg-rose-500/10 transition cursor-pointer"
                               title="Sil"
                             >
                               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -412,9 +417,9 @@ export default function Home() {
             </div>
 
             {/* Alt Tablo Bilgisi */}
-            <div className="mt-4 pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500">
-              <span>SQL Tablosu: <code className="text-slate-400 font-mono">musteriler</code></span>
-              <span>Motor: <code className="text-slate-400 font-mono">{dbInfo?.databaseType || "SQLite"}</code></span>
+            <div className="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500">
+              <span>SQL Tablosu: <code className="text-slate-700 dark:text-slate-400 font-mono">musteriler</code></span>
+              <span>Motor: <code className="text-slate-700 dark:text-slate-400 font-mono">{dbInfo?.databaseType || "SQLite"}</code></span>
             </div>
           </div>
 
@@ -422,11 +427,11 @@ export default function Home() {
 
         {/* VERİTABANI ŞEMASI KUTUSU */}
         {dbInfo?.schema && (
-          <section className="bg-slate-900/30 border border-slate-800/70 rounded-xl p-5">
-            <h3 className="text-xs font-mono uppercase text-slate-400 mb-2">
+          <section className="bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800/70 rounded-xl p-5 shadow-sm dark:shadow-none transition-colors duration-200">
+            <h3 className="text-xs font-mono uppercase text-slate-600 dark:text-slate-400 mb-2">
               Çalışan SQL Şeması (CREATE TABLE DDL):
             </h3>
-            <pre className="bg-slate-950 p-3 rounded-lg border border-slate-800/80 text-xs font-mono text-emerald-400 overflow-x-auto">
+            <pre className="bg-slate-50 dark:bg-slate-950 p-3 rounded-lg border border-slate-200 dark:border-slate-800/80 text-xs font-mono text-emerald-600 dark:text-emerald-400 overflow-x-auto">
               {dbInfo.schema}
             </pre>
           </section>

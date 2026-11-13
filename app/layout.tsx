@@ -22,8 +22,28 @@ export default function RootLayout({
     <html
       lang="tr"
       className={`${montserrat.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className={`${montserrat.className} min-h-full flex flex-col bg-slate-950 text-slate-100 selection:bg-blue-600 selection:text-white`}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var saved = localStorage.getItem('theme');
+                  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  if (saved === 'dark' || (!saved && prefersDark)) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body className={`${montserrat.className} min-h-full flex flex-col bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 selection:bg-blue-600 selection:text-white transition-colors duration-200`}>
         {children}
       </body>
     </html>
